@@ -36,7 +36,11 @@
   </div>
 </nav>
 	<div class="container">
-		
+		<c:if test="${msgError != null}">
+			<div class="alert alert-danger" role="alert">
+				<c:out value="${msgError}"></c:out>
+			</div>
+		</c:if>
 		<h1>Formulario de Registro</h1>
 		<form:form action="/usuario/formulario" method="post" modelAttribute="usuario">
 			<form:label path="nombre">Nombre</form:label><br>

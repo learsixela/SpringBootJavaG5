@@ -12,10 +12,13 @@ public class UsuarioService {
 	@Autowired
 	UsuarioRepository usuarioRepository;
 
-	public void guardarUsuario(Usuario usuario) {
+	public boolean guardarUsuario(Usuario usuario) {
 		Usuario usuarioRetorno = usuarioRepository.findByCorreo(usuario.getCorreo());
-		if (usuarioRetorno != null) {
+		if (usuarioRetorno == null) {
 			usuarioRepository.save(usuario);
+			return true;
+		}else {
+			return false;
 		}
 	}
 

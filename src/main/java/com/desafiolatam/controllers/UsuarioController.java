@@ -52,8 +52,13 @@ public class UsuarioController {
 			model.addAttribute("msgError", "Debe ingresar todos los campos");
 			return "registro.jsp";
 		}else {
-			usuarioService.guardarUsuario(usuario);
-			return "redirect:/usuario/showlogin";
+			boolean resultado = usuarioService.guardarUsuario(usuario);
+			if(resultado) {
+				return "redirect:/usuario/showlogin";
+			}else {
+				model.addAttribute("msgError", "Correo ya existe");
+				return "registro.jsp";
+			}
 		}
 	}
 		
@@ -71,11 +76,14 @@ public class UsuarioController {
 			@RequestParam(value="password") String password,Model model) {
 		System.out.println("password "+ password);
 		System.out.println("email "+ email);
-		
+		if(email.equals("")|| password.equals("")) {
+			model.addAttribute("msgError", "Correo y Password Obligatorios");
+			return "login.jsp";
+		}
 		boolean logueado = usuarioService.login(email, password);
 		
 		if(logueado) {//si es true, enviar a su home
-			return "/home";
+			return "home.jsp";
 			
 		}else {//datos erroneos
 			model.addAttribute("msgError", "Error al ingresar al sistema");
