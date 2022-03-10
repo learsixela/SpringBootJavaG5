@@ -8,13 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 //1.- nos permite capturar ruta
 @RestController
 public class HomeController {
-	//http://localhost:8080/
-	//2.- anotacion del path o ruta
-	@RequestMapping("/")
-	//3.- metodo que realiza la solicitud
-	public String gato() {
-		return "Hola Spring Boot";
-	} 
+
 
 	//http://localhost:8080/hola
 	@RequestMapping("/hola")
