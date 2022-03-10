@@ -36,7 +36,7 @@
 	<div class="container">
 		<c:if test="${msgError != null}">
 			<div class="alert alert-danger" role="alert">
-				<c:out value="${msg}"></c:out>
+				<c:out value="${msgError}"></c:out>
 			</div>
 		</c:if>
 		<strong>La fecha actual es:</strong>: <%=new Date()%>

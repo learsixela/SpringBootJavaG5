@@ -10,4 +10,5 @@ import com.desafiolatam.models.Usuario;
 @Repository
 public interface UsuarioRepository extends CrudRepository<Usuario,Long>{
 	List<Usuario> findAll();
+	Usuario findByCorreo(String correo);
 }

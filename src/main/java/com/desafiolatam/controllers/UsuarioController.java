@@ -68,10 +68,20 @@ public class UsuarioController {
 	//capturar los datos desde el jsp
 	@RequestMapping("/login")
 	public String login(@RequestParam(value="email") String email,
-			@RequestParam(value="password") String password) {
+			@RequestParam(value="password") String password,Model model) {
 		System.out.println("password "+ password);
 		System.out.println("email "+ email);
-		return "login.jsp";
+		
+		boolean logueado = usuarioService.login(email, password);
+		
+		if(logueado) {//si es true, enviar a su home
+			return "/home";
+			
+		}else {//datos erroneos
+			model.addAttribute("msgError", "Error al ingresar al sistema");
+			return "login.jsp";
+		}
+		
 	}
 	
 }
