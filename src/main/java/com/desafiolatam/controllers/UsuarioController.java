@@ -47,7 +47,7 @@ public class UsuarioController {
 	@RequestMapping("/formulario")
 	public String formulario(@Valid @ModelAttribute("usuario") Usuario usuario,
 			BindingResult result,
-			Model model,HttpSession session) {
+			Model model) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("msgError", "Debe ingresar todos los campos");
@@ -55,7 +55,7 @@ public class UsuarioController {
 		}else {
 			boolean resultado = usuarioService.guardarUsuario(usuario);
 			if(resultado) {
-				session.setAttribute("usuarioEmail", usuario.getCorreo());
+				
 				return "redirect:/usuario/showlogin";
 			}else {
 				model.addAttribute("msgError", "Correo ya existe");
@@ -75,7 +75,9 @@ public class UsuarioController {
 	//capturar los datos desde el jsp
 	@RequestMapping("/login")
 	public String login(@RequestParam(value="email") String email,
-			@RequestParam(value="password") String password,Model model) {
+			@RequestParam(value="password") String password,Model model,
+			HttpSession session) {
+		
 		System.out.println("password "+ password);
 		System.out.println("email "+ email);
 		if(email.equals("")|| password.equals("")) {
@@ -85,7 +87,7 @@ public class UsuarioController {
 		boolean logueado = usuarioService.login(email, password);
 		
 		if(logueado) {//si es true, enviar a su home
-			
+			session.setAttribute("emailUsuario", email);
 			
 			return "redirect:/auto/home";
 			
