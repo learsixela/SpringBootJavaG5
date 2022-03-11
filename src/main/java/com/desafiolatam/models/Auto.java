@@ -12,6 +12,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -25,7 +26,7 @@ public class Auto {
 	private String marca;
 	private Float motor;
 	private String color;
-	@Size(min=1,max=3)
+	@Range(min=0, max=500)
 	private float velocidad;
 	
     @Column(updatable=false)

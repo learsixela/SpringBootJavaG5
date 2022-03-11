@@ -1,5 +1,6 @@
 package com.desafiolatam.controllers;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class UsuarioController {
 	@RequestMapping("/formulario")
 	public String formulario(@Valid @ModelAttribute("usuario") Usuario usuario,
 			BindingResult result,
-			Model model) {
+			Model model,HttpSession session) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("msgError", "Debe ingresar todos los campos");
@@ -54,6 +55,7 @@ public class UsuarioController {
 		}else {
 			boolean resultado = usuarioService.guardarUsuario(usuario);
 			if(resultado) {
+				session.setAttribute("usuarioEmail", usuario.getCorreo());
 				return "redirect:/usuario/showlogin";
 			}else {
 				model.addAttribute("msgError", "Correo ya existe");
@@ -83,7 +85,9 @@ public class UsuarioController {
 		boolean logueado = usuarioService.login(email, password);
 		
 		if(logueado) {//si es true, enviar a su home
-			return "home.jsp";
+			
+			
+			return "redirect:/auto/home";
 			
 		}else {//datos erroneos
 			model.addAttribute("msgError", "Error al ingresar al sistema");
