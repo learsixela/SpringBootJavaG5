@@ -35,6 +35,8 @@
         <li><a href="/">Homes</a></li>
         <li><a href="usuario/registro">Registro</a></li>
         <li><a href="usuario/showlogin">Login</a></li>
+        <li><a href="cliente">Cliente</a></li>
+        <li><a href="direccion">Direccion</a></li>
       </ul>
     </div>
   </div>
