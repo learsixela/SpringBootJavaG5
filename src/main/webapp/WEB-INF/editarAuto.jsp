@@ -14,8 +14,38 @@
 	crossorigin="anonymous">
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Dinamic Web Project</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="/auto/home">Home</a></li>
+				</ul>
+				<form class="d-flex">
+					<div class="btn-group dropstart">
+						<button type="button" class="btn btn-secondary dropdown-toggle"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Usuario</button>
+						<ul class="dropdown-menu" style="">
+							<li><a class="dropdown-item" href="#">Editar</a></li>
+							<li><a class="dropdown-item" href="#">Inicio</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+	</nav>
 	<div class="container">
-	<form:form action="/autito/actualizar/${auto.id}" method="post" modelAttribute="auto">
+	<form:form action="/auto/actualizar/${auto.id}" method="post" modelAttribute="auto">
 		<form:label path="marca">Marca:</form:label><br>
 		<form:input path="marca" class="form-control"/><br>
 		

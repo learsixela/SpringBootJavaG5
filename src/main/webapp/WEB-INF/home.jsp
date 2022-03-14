@@ -28,7 +28,7 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/">Home</a></li>
+						aria-current="page" href="/auto/home">Home</a></li>
 				</ul>
 				<form class="d-flex">
 					<div class="btn-group dropstart">
@@ -39,7 +39,7 @@
 							<li><a class="dropdown-item" href="#">Editar</a></li>
 							<li><a class="dropdown-item" href="#">Inicio</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+							<li><a class="dropdown-item" href="/usuario/logout">Cerrar Sesión</a></li>
 						</ul>
 					</div>
 				</form>
@@ -49,7 +49,7 @@
 
 	<div class="container">
 	
-	<form:form action="/autito/insertar" method="post" modelAttribute="auto">
+	<form:form action="/auto/insertar" method="post" modelAttribute="auto">
 		<form:label path="marca">Marca:</form:label><br>
 		<form:input path="marca" class="form-control"/><br>
 		
@@ -92,8 +92,8 @@
 						<td><c:out value="${auto.color}"></c:out></td>
 						
 						<td>
-							<a class="btn btn-outline-info" href="/autito/editar/${auto.id}" role="button">Editar</a>
-						 	<a class="btn btn-outline-danger" href="/autito/eliminar/${auto.id}" role="button">Eliminar</a>
+							<a class="btn btn-outline-info" href="/auto/editar/${auto.id}" role="button">Editar</a>
+						 	<a class="btn btn-outline-danger" href="/auto/eliminar/${auto.id}" role="button">Eliminar</a>
 						</td>
 					</tr>
 				</c:forEach>

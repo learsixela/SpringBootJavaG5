@@ -2,6 +2,7 @@ package com.desafiolatam.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,16 @@ public class AutitoController {
 	
 	
 	@RequestMapping("/home")
-	public String home(Model model) {
-		List<Auto> listaAutos = autoService.findAll();
-		model.addAttribute("listaAutos", listaAutos);
-		return "auto.jsp";
+	public String home(Model model,HttpSession session) {
+		String emailSession= (String) session.getAttribute("emailUsuario");
+		if(session.getAttribute("emailUsuario") != null || !emailSession.isEmpty()) {
+			List<Auto> listaAutos = autoService.findAll();
+			model.addAttribute("listaAutos", listaAutos);
+			return "home.jsp";
+		}else {
+			return "redirect:/usuario/showlogin";
+		}
+
 	}
 	//despliegue jsp
 	@RequestMapping("/crear")
@@ -50,7 +57,7 @@ public class AutitoController {
 	}
 	
 	
-	//autito/editar/{id}
+	//autito/editar/{id}89
 	@RequestMapping("/editar/{id}")
 	public String editar(@PathVariable("id") Long id,Model model) {
 		//obtener el auto con el id
