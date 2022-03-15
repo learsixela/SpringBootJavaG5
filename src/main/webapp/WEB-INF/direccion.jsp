@@ -50,7 +50,9 @@
 			<form:label path="cliente">Cliente</form:label>
 			<br>
 			<form:select path="cliente" class="form-select">
-				<form:option value=""></form:option>
+				<c:forEach items="${listaClientes}" var="cliente">
+					<form:option value="${cliente.id}"><c:out value="${cliente.nombre}"></c:out> </form:option>
+				</c:forEach>
 			</form:select>
 			<br>
 			<form:label path="nombre">Nombre</form:label>

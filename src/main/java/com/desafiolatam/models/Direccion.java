@@ -29,7 +29,7 @@ public class Direccion {
 	private String ciudad;
 	private String region;
 	
-	//1 a 1
+	//1 a 1 (llevara la FK)
 	@OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cliente_id")
 	private Cliente cliente;

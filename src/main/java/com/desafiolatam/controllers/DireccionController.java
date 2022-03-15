@@ -1,5 +1,7 @@
 package com.desafiolatam.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.desafiolatam.models.Cliente;
 import com.desafiolatam.models.Direccion;
 import com.desafiolatam.sevices.ClienteService;
 import com.desafiolatam.sevices.DireccionService;
@@ -19,14 +22,15 @@ public class DireccionController {
 	
 	@Autowired
 	DireccionService direService;
+	
 	@Autowired
-	ClienteService cService;
+	ClienteService clienteService;
 	
 	@RequestMapping("")
-	public String show(Model model) {
-		model.addAttribute("direccion", new Direccion());
-		model.addAttribute("clientes", cService.findAll());
-		
+	public String show(@ModelAttribute("direccion") Direccion direccion,
+			Model model) {
+		List<Cliente> listaClientes= clienteService.findAll();
+		model.addAttribute("listaClientes", listaClientes);
 		return "direccion.jsp";
 	}
 	

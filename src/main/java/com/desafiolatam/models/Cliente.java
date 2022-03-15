@@ -1,6 +1,7 @@
 package com.desafiolatam.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -36,6 +38,11 @@ public class Cliente {
 	//direccion
 	@OneToOne(mappedBy="cliente", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Direccion direccion;
+	
+	//Relacion 1 a Muchos (OneToMany)
+	//compra - venta
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Compra> listaCompras;//compras
 
 	
     @Column(updatable=false)
@@ -47,6 +54,17 @@ public class Cliente {
     
 	public Cliente() {
 		super();
+	}
+
+	public Cliente(Long id, @Size(min = 4, max = 20) String nombre, @Size(min = 4, max = 20) String apellido,
+			@Size(min = 6) String correo, Direccion direccion, List<Compra> listaCompras) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.correo = correo;
+		this.direccion = direccion;
+		this.listaCompras = listaCompras;
 	}
 
 	public Cliente(Long id, @Size(min = 4, max = 20) String nombre, @Size(min = 4, max = 20) String apellido,
@@ -107,4 +125,12 @@ public class Cliente {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+	public List<Compra> getListaCompras() {
+		return listaCompras;
+	}
+
+	public void setListaCompras(List<Compra> listaCompras) {
+		this.listaCompras = listaCompras;
+	}
 }

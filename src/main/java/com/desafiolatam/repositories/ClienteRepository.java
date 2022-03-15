@@ -11,4 +11,5 @@ import com.desafiolatam.models.Cliente;
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
 
 	List<Cliente> findAll();
+	
 }

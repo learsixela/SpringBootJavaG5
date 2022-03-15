@@ -99,6 +99,38 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<br>
+		<hr>
+		<h1>Listado Clientes</h1>
+		
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellido</th>
+					<th scope="col">Correo</th>
+					<th scope="col">Direccion</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${listaClientes}" var="cliente">
+				
+					<tr>
+						<th scope="row"><c:out value="${cliente.id}"></c:out></th>
+						<td><c:out value="${cliente.nombre}"></c:out></td>
+						<td><c:out value="${cliente.apellido}"></c:out></td>
+						<td><c:out value="${cliente.correo}"></c:out></td>
+						<td>
+							<c:out value="${cliente.direccion.nombre}"></c:out>&nbsp;
+							<c:out value="${cliente.direccion.numero}"></c:out>
+						</td>
+		
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.desafiolatam.models.Auto;
 import com.desafiolatam.sevices.AutoService;
+import com.desafiolatam.sevices.ClienteService;
 
 @Controller
 @RequestMapping("/autito")
@@ -22,17 +23,18 @@ public class AutitoController {
 	@Autowired
 	AutoService autoService;
 	
+	@Autowired
+	ClienteService cService;
+	
 	
 	@RequestMapping("/home")
-	public String home(Model model,HttpSession session) {
-		String emailSession= (String) session.getAttribute("emailUsuario");
-		if(session.getAttribute("emailUsuario") != null || !emailSession.isEmpty()) {
-			List<Auto> listaAutos = autoService.findAll();
-			model.addAttribute("listaAutos", listaAutos);
-			return "home.jsp";
-		}else {
-			return "redirect:/usuario/showlogin";
-		}
+	public String home(Model model) {
+		
+		List<Auto> listaAutos = autoService.findAll();
+		model.addAttribute("listaAutos", listaAutos);
+		model.addAttribute("listaClientes", cService.findAll());
+		return "home.jsp";
+
 
 	}
 	//despliegue jsp

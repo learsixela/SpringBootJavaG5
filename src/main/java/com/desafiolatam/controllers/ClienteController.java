@@ -23,6 +23,7 @@ public class ClienteController {
 	@RequestMapping("")
 	public String show(Model model) {
 		model.addAttribute("cliente", new Cliente());
+		
 		return "cliente.jsp";
 	}
 	

@@ -22,7 +22,6 @@ public class ClienteService {
 	}
 
 	public List<Cliente> findAll() {
-		// TODO Auto-generated method stub
 		return cRepository.findAll();
 	}
 	
