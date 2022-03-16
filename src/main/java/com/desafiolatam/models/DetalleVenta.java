@@ -18,8 +18,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Entity
-@Table(name="detalle_ventas")
+
 public class DetalleVenta {
 
 	@Id

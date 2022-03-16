@@ -31,34 +31,32 @@ public class Producto {
 	private Float precio;
 
 	// ManyToMany (2 OneToMany)
-	//name = "detalle_ventas_productos", -> tabla relacional
+	// name = "productos_ventas", -> tabla relacional
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(
-			name = "detalle_ventas_productos", 
-			joinColumns = @JoinColumn(name = "producto_id"), 
-			inverseJoinColumns = @JoinColumn(name = "detalle_venta_id")
-			)
-	//siempre retorna una lista
-	private List<DetalleVenta> detalleVentas;
-	
+	@JoinTable(name = "productos_ventas", 
+	joinColumns = @JoinColumn(name = "producto_id"), 
+	inverseJoinColumns = @JoinColumn(name = "venta_id"))
+	// siempre retorna una lista
+	private List<Venta> ventas;
+
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	
+
 	public Producto() {
 		super();
 	}
 
-	public Producto(Long id, String nombre, String descripcion, Float precio, List<DetalleVenta> detalleVentas) {
+	public Producto(Long id, String nombre, String descripcion, Float precio, List<Venta> ventas) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
-		this.detalleVentas = detalleVentas;
+		this.ventas = ventas;
 	}
 
 	@PrePersist
@@ -87,10 +85,6 @@ public class Producto {
 		return precio;
 	}
 
-	public List<DetalleVenta> getDetalleVentas() {
-		return detalleVentas;
-	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -107,8 +101,12 @@ public class Producto {
 		this.precio = precio;
 	}
 
-	public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-		this.detalleVentas = detalleVentas;
+	public List<Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(List<Venta> ventas) {
+		this.ventas = ventas;
 	}
 
 }

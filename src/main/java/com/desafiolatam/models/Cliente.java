@@ -44,6 +44,8 @@ public class Cliente {
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Compra> listaCompras;//compras
 
+	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Venta> listaVentas;//ventas
 	
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -132,5 +134,13 @@ public class Cliente {
 
 	public void setListaCompras(List<Compra> listaCompras) {
 		this.listaCompras = listaCompras;
+	}
+
+	public List<Venta> getListaVentas() {
+		return listaVentas;
+	}
+
+	public void setListaVentas(List<Venta> listaVentas) {
+		this.listaVentas = listaVentas;
 	}
 }
