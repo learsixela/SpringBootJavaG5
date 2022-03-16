@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.desafiolatam.models.Auto;
 import com.desafiolatam.sevices.AutoService;
 import com.desafiolatam.sevices.ClienteService;
+import com.desafiolatam.sevices.CompraService;
 
 @Controller
 @RequestMapping("/auto")
@@ -26,6 +27,10 @@ public class AutoController {
 	@Autowired
 	ClienteService clienteService;
 	
+	@Autowired
+	CompraService compraservice;
+	
+
 	
 	@RequestMapping("/home")
 	public String home(Model model,HttpSession session) {
@@ -36,6 +41,7 @@ public class AutoController {
 			model.addAttribute("auto", new Auto());
 			
 			model.addAttribute("listaClientes", clienteService.findAll());
+			model.addAttribute("listaCompras", compraservice.findAll());
 			
 		return "home.jsp";
 		}else {
