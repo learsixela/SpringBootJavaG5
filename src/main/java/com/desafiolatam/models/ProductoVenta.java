@@ -24,7 +24,7 @@ public class ProductoVenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer cantidad;
-	private double precioProducto;
+	private double precioProducto;//Historico
 	private double precioVenta;//cantidad * precioProducto
 	
 	//producto
@@ -49,6 +49,16 @@ public class ProductoVenta {
 		super();
 	}
 
+	public ProductoVenta(Integer cantidad, double precioProducto, double precioVenta, Producto producto,
+			Venta venta) {
+		super();
+		this.cantidad = cantidad;
+		this.precioProducto = precioProducto;
+		this.precioVenta = precioVenta;
+		this.producto = producto;
+		this.venta = venta;
+	}
+	
 	public ProductoVenta(Long id, Integer cantidad, double precioProducto, double precioVenta, Producto producto,
 			Venta venta) {
 		super();

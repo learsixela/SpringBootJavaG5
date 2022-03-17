@@ -17,6 +17,7 @@ import com.desafiolatam.models.Auto;
 import com.desafiolatam.sevices.AutoService;
 import com.desafiolatam.sevices.ClienteService;
 import com.desafiolatam.sevices.CompraService;
+import com.desafiolatam.sevices.VentaService;
 
 @Controller
 @RequestMapping("/auto")
@@ -30,7 +31,6 @@ public class AutoController {
 	@Autowired
 	CompraService compraservice;
 	
-
 	
 	@RequestMapping("/home")
 	public String home(Model model,HttpSession session) {
@@ -42,6 +42,8 @@ public class AutoController {
 			
 			model.addAttribute("listaClientes", clienteService.findAll());
 			model.addAttribute("listaCompras", compraservice.findAll());
+			
+			
 			
 		return "home.jsp";
 		}else {

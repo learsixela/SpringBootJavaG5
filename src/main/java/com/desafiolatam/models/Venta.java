@@ -26,7 +26,7 @@ public class Venta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	//TODO agregar la relacion ManyToOne
+
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cliente_id")
 	private Cliente cliente;

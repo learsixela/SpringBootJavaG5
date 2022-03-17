@@ -21,4 +21,9 @@ public class ProductoService {
 	public List<Producto> findAll(){
 		return productoRepository.findAll();
 	}
+
+	public Producto findById(Long idProducto) {
+		// TODO Auto-generated method stub
+		return productoRepository.findById(idProducto).get();
+	}
 }

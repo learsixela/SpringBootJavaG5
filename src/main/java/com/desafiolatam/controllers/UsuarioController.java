@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.desafiolatam.models.Usuario;
+import com.desafiolatam.models.Venta;
 import com.desafiolatam.sevices.UsuarioService;
+import com.desafiolatam.sevices.VentaService;
 
 @Controller
 @RequestMapping("/usuario")
@@ -21,6 +23,8 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
+	@Autowired
+	VentaService ventaService;
 	
 	//http://localhost:8080/usuario/
 	@RequestMapping("/")
@@ -68,6 +72,9 @@ public class UsuarioController {
 	//mostrar el jsp
 	@RequestMapping("/showlogin")
 	public String showlogin(Model model) {
+		Venta venta = new Venta();
+		Venta ventaInsertada = ventaService.save(venta);
+		
 		model.addAttribute("titulo", "Mi pagina");
 		return "login.jsp";
 	}
