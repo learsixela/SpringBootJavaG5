@@ -70,7 +70,33 @@
 			
 			<button type="submit" class="btn btn-primary">Agregar Producto</button>
 		</form>
-	
+	<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Total</th>
+					<th scope="col">Producto</th>
+					<th scope="col">Venta</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${listaProductoVenta}" var="pvta">
+
+					<tr>
+						<th scope="row"><c:out value="${pvta.id}"></c:out></th>
+						<td><c:out value="${pvta.cantidad}"></c:out></td>
+						<td><c:out value="${pvta.precioProducto}"></c:out></td>
+						<td><c:out value="${pvta.precioVenta}"></c:out></td>
+						<td><c:out value="${pvta.producto.nombre}"></c:out></td>
+						<td><c:out value="${pvta.venta.id}"></c:out></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<br>
+		<hr>
 	</div>
 	<!-- Footer -->
 	<footer class="container-fluid bg-4 text-center">

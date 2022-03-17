@@ -26,4 +26,8 @@ public class ProductoVentaService {
 		return productoVentaRepository.findAllProductoVentaWhereVenta(idVenta);
 	}
 
+	public List<Object[]> findAllProductoFiltro(Long idVenta) {
+		return productoVentaRepository.findAllProductoFiltro(idVenta);
+	}
+
 }

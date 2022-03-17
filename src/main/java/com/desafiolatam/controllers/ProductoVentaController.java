@@ -74,6 +74,15 @@ public class ProductoVentaController {
 		model.addAttribute("venta", venta);
 		
 		List<ProductoVenta> listaProductoVenta = productoVentaService.findAllVentaId(idVenta);
+		List<Object[]> objetos =productoVentaService.findAllProductoFiltro(idVenta);
+		//Acceder al primer objeto
+		Object[] objeto = objetos.get(0);
+		Object objetoId = objeto[0];
+		Object objetoVentaId = objeto[1];
+		Object objetoProductoId = objeto[2];
+		
+		model.addAttribute("listaProductoVenta", listaProductoVenta);
+		
 		
 		return "productoVenta.jsp";
 	}
