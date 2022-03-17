@@ -1,5 +1,6 @@
 package com.desafiolatam.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -42,6 +43,9 @@ public class ProductoVentaController {
 		List<Producto> listaProducto = productoService.findAll();
 		model.addAttribute("listaProducto", listaProducto);
 		
+		List<ProductoVenta> listaProductoVenta = new ArrayList<ProductoVenta>();
+		model.addAttribute("listaProductoVenta", listaProductoVenta);
+		
 		return "productoVenta.jsp";
 	}
 	
@@ -57,10 +61,17 @@ public class ProductoVentaController {
 		//imprimir los parametros
 		//buscar los datos
 		Venta venta = ventaService.findById(idVenta);
+		
+		
+		
 		Producto producto = productoService.findById(idProducto);
 		
 		//calculo de precio venta
 		double precioVenta = producto.getPrecio() * cantidad;
+		
+		//ACTUALIZAR LA VENTA
+		venta.setMontoTotal(venta.getMontoTotal() + precioVenta);
+		venta = ventaService.save(venta);
 		
 		//llenar el objeto ProductoVenta
 		ProductoVenta productoVenta= new ProductoVenta(cantidad,producto.getPrecio(),precioVenta,producto,venta);
@@ -74,14 +85,15 @@ public class ProductoVentaController {
 		model.addAttribute("venta", venta);
 		
 		List<ProductoVenta> listaProductoVenta = productoVentaService.findAllVentaId(idVenta);
+		model.addAttribute("listaProductoVenta", listaProductoVenta);
+		
+		//CONSULTA SELECCTIVA POR ALGUNAS COLUMNAS DE LAS TABLAS
 		List<Object[]> objetos =productoVentaService.findAllProductoFiltro(idVenta);
 		//Acceder al primer objeto
 		Object[] objeto = objetos.get(0);
 		Object objetoId = objeto[0];
 		Object objetoVentaId = objeto[1];
 		Object objetoProductoId = objeto[2];
-		
-		model.addAttribute("listaProductoVenta", listaProductoVenta);
 		
 		
 		return "productoVenta.jsp";
