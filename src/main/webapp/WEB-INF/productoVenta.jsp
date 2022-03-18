@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,27 +50,28 @@
 	</nav>
 
 	<div class="container">
-	
+
 		<form action="/productoVenta/insertar/${venta.id}" method="post">
 			<div class="mb-3">
-			<label for="producto" class="form-label">Producto</label>
-			<select name="producto">
-				<c:forEach items="${listaProducto}" var="prod" >
-					<option value="${prod.id}">
-						<c:out value="${prod.nombre}"></c:out>
-					</option>
-				</c:forEach>
-			</select>
-				
+				<label for="producto" class="form-label">Producto</label> <select
+					name="producto">
+					<c:forEach items="${listaProducto}" var="prod">
+						<option value="${prod.id}">
+							<c:out value="${prod.nombre}"></c:out>
+						</option>
+					</c:forEach>
+				</select>
+
 			</div>
 			<div class="mb-3">
-				<label for="cantidad" class="form-label">Cantidad</label>
-				<input type="number" class="form-control" id="cantidad" name="cantidad">
+				<label for="cantidad" class="form-label">Cantidad</label> <input
+					type="number" class="form-control" id="cantidad" name="cantidad">
 			</div>
-			
-			<button type="submit" class="btn btn-primary">Agregar Producto</button>
+
+			<button type="submit" class="btn btn-primary">Agregar
+				Producto</button>
 		</form>
-	<table class="table table-hover">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th scope="col">#</th>
@@ -79,6 +80,7 @@
 					<th scope="col">Total</th>
 					<th scope="col">Producto</th>
 					<th scope="col">Venta</th>
+					<th scope="col">Accion</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -91,9 +93,21 @@
 						<td><c:out value="${pvta.precioVenta}"></c:out></td>
 						<td><c:out value="${pvta.producto.nombre}"></c:out></td>
 						<td><c:out value="${pvta.venta.id}"></c:out></td>
+						<td><a
+							href="/productoVenta/${venta.id}/eliminar/${pvta.id}">
+								<button type="button" id="btn4" class="btn btn-danger">Eliminar</button>
+						</a></td>
+
 					</tr>
 				</c:forEach>
 			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="4"></td>
+					<td colspan="3">Total: $ <c:out value="${venta.montoTotal}"></c:out></td>
+					<td></td>
+				</tr>
+			</tfoot>
 		</table>
 		<br>
 		<hr>

@@ -22,12 +22,20 @@ public class ProductoVentaService {
 	}
 
 	public List<ProductoVenta> findAllVentaId(Long idVenta) {
-		// TODO Auto-generated method stub
 		return productoVentaRepository.findAllProductoVentaWhereVenta(idVenta);
 	}
 
 	public List<Object[]> findAllProductoFiltro(Long idVenta) {
 		return productoVentaRepository.findAllProductoFiltro(idVenta);
+	}
+
+	public ProductoVenta findById(Long id) {
+		return productoVentaRepository.findById(id).get();
+	}
+
+	public void eliminarProductoVenta(Long id) {
+		productoVentaRepository.deleteById(id);
+		
 	}
 
 }

@@ -70,6 +70,9 @@ public class ProductoVentaController {
 		double precioVenta = producto.getPrecio() * cantidad;
 		
 		//ACTUALIZAR LA VENTA
+		if(venta.getMontoTotal()== null) {
+			venta.setMontoTotal(0d);
+		}
 		venta.setMontoTotal(venta.getMontoTotal() + precioVenta);
 		venta = ventaService.save(venta);
 		
@@ -98,5 +101,36 @@ public class ProductoVentaController {
 		
 		return "productoVenta.jsp";
 	}
+	
+	@RequestMapping("/formActualizar/{id}")
+    public String regProdVenta(@PathVariable("id") Long id,
+            Model model) {
+        // Buscar datos
+        Venta venta = ventaService.findById(id);
+        model.addAttribute("venta", venta);
+        List<Producto> listaProductos = productoService.findAll();
+        model.addAttribute("listaProductos", listaProductos);
+        List<ProductoVenta> listaProductoVenta = productoVentaService.findAllVentaId(id);
+        model.addAttribute("listaProductoVenta", listaProductoVenta);
+        model.addAttribute("titulo", "Registro de ProductoVenta");
+        model.addAttribute("msgError", "Producto Eliminado");
+        return "productoVenta.jsp";
+
+    }
+	
+	@RequestMapping("/{venta_id}/eliminar/{id}")
+    public String eliminar(@PathVariable("id") Long id, @PathVariable("venta_id") Long venta_id, Model model) {
+        model.addAttribute("msgError", "Producto Eliminado");
+        ProductoVenta productoVenta = productoVentaService.findById(id);
+        productoVentaService.eliminarProductoVenta(id);
+        Venta venta = ventaService.findById(venta_id);
+        if (venta.getMontoTotal() == null) {
+            venta.setMontoTotal(0d);
+        }
+        venta.setMontoTotal(venta.getMontoTotal() - productoVenta.getPrecioVenta());
+        ventaService.save(venta);
+        return "redirect:/productoVenta/formActualizar/" + venta_id;
+
+    }
 
 }

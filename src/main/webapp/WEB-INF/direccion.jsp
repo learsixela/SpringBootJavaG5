@@ -51,7 +51,9 @@
 			<br>
 			<form:select path="cliente" class="form-select">
 				<c:forEach items="${listaClientes}" var="cliente">
-					<form:option value="${cliente.id}"><c:out value="${cliente.nombre}"></c:out> </form:option>
+					<c:if test="${cliente.direccion.id == null}"> 
+						<form:option value="${cliente.id}"><c:out value="${cliente.nombre}"></c:out> </form:option>
+					</c:if>
 				</c:forEach>
 			</form:select>
 			<br>
