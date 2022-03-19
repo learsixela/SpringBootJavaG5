@@ -51,8 +51,10 @@
 			<br>
 			<form:select path="cliente" class="form-select">
 				<c:forEach items="${listaClientes}" var="cliente">
-					<c:if test="${cliente.direccion.id == null}"> 
-						<form:option value="${cliente.id}"><c:out value="${cliente.nombre}"></c:out> </form:option>
+					<c:if test="${cliente.direccion.id == null}">
+						<form:option value="${cliente.id}">
+							<c:out value="${cliente.nombre}"></c:out>
+						</form:option>
 					</c:if>
 				</c:forEach>
 			</form:select>
@@ -78,8 +80,21 @@
 			<br>
 			<input type="submit" class="btn btn-primary"
 				value="asignar Direccion">
-
 		</form:form>
+
+		<button type="button" role="menuitem" name="Descargar"
+			class="ms-Button ms-Button--commandBar ms-CommandBarItem-link root-103"
+			data-is-focusable="true">
+			<span class="ms-Button-flexContainer flexContainer-104"
+				data-automationid="splitbuttonprimary">
+			<i
+				data-icon-name="download" aria-hidden="true"
+				class="ms-Icon root-33 css-75 ms-Button-icon icon-106"
+				style="font-family: FabricMDL2Icons;"></i>
+				<span
+				class="ms-Button-textContainer textContainer-105"><span
+					class="ms-Button-label label-107" id="id__635">Descargar</span></span></span>
+		</button>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
