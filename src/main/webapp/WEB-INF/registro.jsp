@@ -53,10 +53,14 @@
 			<form:label path="correo">Correo</form:label>
 			<form:input path="correo" class="form-control"/>
 			<br>
+			
 			<form:label path="password">Password</form:label><br>
-			<form:errors path="password" class="text-danger"></form:errors>
-			<form:input path="password" class="form-control"/>
+			<form:input type="password" path="password" class="form-control"/>
 			<br>
+			<form:label path="passwordConfirmation">Password Confirmacion</form:label><br>
+			<form:input type="password" path="passwordConfirmation" class="form-control"/>
+			<br>
+			
 			<form:label path="genero">Genero</form:label><br>
 			<form:select path="genero" class="form-select">
 				<form:option value="1">Femenino</form:option>

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,11 +28,15 @@ public class Usuario {
 	private String nombre;
 	@Size(min=4,max=20)
 	private String apellido;
-	@Size(min=6)
+	
+	@Email(message="Email no puede estar vacio")
 	private String correo;
 	
-	@Size(min=6,max=12) //qwertyqwerty
+	@Size(min=6,message="Minimo deben ser 6 caracteres") //qwertyqwerty
 	private String password;
+	
+	@Transient
+	private String passwordConfirmation;
 	
 	private int genero;
 	
@@ -110,4 +116,12 @@ public class Usuario {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+	public String getPasswordConfirmation() {
+		return passwordConfirmation;
+	}
+
+	public void setPasswordConfirmation(String passwordConfirmation) {
+		this.passwordConfirmation = passwordConfirmation;
+	}
 }
